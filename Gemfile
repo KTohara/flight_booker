@@ -24,7 +24,6 @@ end
 group :development do
   gem "web-console"
   gem "annotate"
-  gem "web-console"
   gem "binding_of_caller"
   gem "better_errors"
 end

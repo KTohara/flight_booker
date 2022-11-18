@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :booking do
+    
+  end
+
   factory :flight do
     departure_date { "2022-11-18" }
     departure_time { "2022-11-18 16:06:07" }
