@@ -23,4 +23,12 @@ class Flight < ApplicationRecord
   has_many :bookings
   has_many :flights, through: :bookings, source: :flight
   has_many :passengers, through: :bookings
+
+  scope :find_flights, -> params {
+    where(
+      departing_airport_id: params[:departing_airport_id],
+      arriving_airport_id: params[:arriving_airport_id],
+      departure_date: params[:date]
+    ) 
+  }
 end

@@ -1,22 +1,26 @@
-<div class="mb-4 flex-col md:flex items-center gap-2">
-  <%= form_with url: flights_path, method: :get do |f| %>
+<div class="bg-red-200 mb-4 flex-col md:flex items-center gap-2">
+  <%= form_with model: airports, url: flights_path, method: :get do |f| %>
     <div class="flex flex-col md:flex-row gap-1 items-center">
+      <i class="ri-flight-takeoff-line"></i>
       <%= f.label 'Departing from?' %>
-      <%= f.collection_select :departure_airport_id, @airports, :id, :location %>
+      <%= f.collection_select :departing_airport_id, airports, :id, :location %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
+      <i class="ri-flight-land-line"></i>
       <%= f.label 'Going to?' %>
-      <%= f.collection_select :arriving_airport_id, @airports, :id, :location %>
+      <%= f.collection_select :arriving_airport_id, airports, :id, :location %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
+      <i class="ri-emotion-happy-line"></i>
       <%= f.label :passenger_count, 'Passengers' %>
       <%= f.select :passenger_count, [1, 2, 3, 4] %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
-      <%= f.label :date %>
+      <i class="ri-calendar-2-fill"></i>
+      <%= f.label 'Date' %>
       <%= f.date_field :date %>
     </div>
 
