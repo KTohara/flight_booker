@@ -3,7 +3,6 @@ class BookingsController < ApplicationController
   end
   
   def new
-    debugger
     @flight = Flight.find(params[:flight_id])
     @booking = Booking.new
     @passenger_count = params[:passenger_count].to_i
@@ -12,12 +11,13 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking = Booking.new
+    @booking = Booking.new(booking_params)
+    debugger
   end
 
   private
 
     def booking_params
-      params.require(:booking).permit()
+      params.require(:booking).permit(:flight_id, passengers_attributes: [:id, :name])
     end
 end
