@@ -18,8 +18,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :username, presence: true, uniqueness: true, length: { in: 3..15 }
-
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
   has_many :flights, through: :bookings, source: :passenger
+
+  validates :username, presence: true, uniqueness: true, length: { in: 3..15 }
 end

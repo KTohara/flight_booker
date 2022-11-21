@@ -1,8 +1,7 @@
 class FlightsController < ApplicationController
   def index
     @airports = Airport.all.order(:location)
-
-    @search_results = search_flights if params[:airport]
+    @available_flights = search_flights if params[:airport]
   end
 
   private
@@ -19,7 +18,7 @@ class FlightsController < ApplicationController
         flash.now[:alert] = 'Please pick a date!'
         render :index
       else
-        Flight.find_flights(search_params)
+        Flight.includes(:departing_airport, :arriving_airport).find_flights(search_params)
       end
     end
 end

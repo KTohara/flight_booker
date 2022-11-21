@@ -2,18 +2,17 @@
 #
 # Table name: bookings
 #
-#  id           :bigint           not null, primary key
-#  flight_id    :bigint
-#  passenger_id :bigint
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#
-# Foreign Keys
-#
-#  fk_rails_...  (flight_id => flights.id)
-#  fk_rails_...  (passenger_id => users.id)
+#  id         :bigint           not null, primary key
+#  flight_id  :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :bigint           not null
 #
 class Booking < ApplicationRecord
-  belongs_to :passenger, class_name: :User
+  belongs_to :user
   belongs_to :flight
+
+  has_many :passengers, dependent: :destroy
+  
+  accepts_nested_attributes_for :passengers
 end

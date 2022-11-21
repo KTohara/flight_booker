@@ -15,7 +15,7 @@
     <div class="flex flex-col md:flex-row gap-1 items-center">
       <i class="ri-emotion-happy-line"></i>
       <%= f.label :passenger_count, 'Passengers' %>
-      <%= f.select :passenger_count, [1, 2, 3, 4] %>
+      <%= f.select :passenger_count, 1..4 %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">

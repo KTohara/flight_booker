@@ -11,11 +11,6 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
-# Foreign Keys
-#
-#  fk_rails_...  (arriving_airport_id => airports.id)
-#  fk_rails_...  (departing_airport_id => airports.id)
-#
 require 'rails_helper'
 
 RSpec.describe Flight, type: :model do

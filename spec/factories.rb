@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :passenger do
+    name { "MyString" }
+    booking { nil }
+  end
+
   factory :booking do
     
   end

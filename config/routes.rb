@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :flights, only: [:index]
+  resources :bookings, only: %i[show new create]
 end

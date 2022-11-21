@@ -1,5 +1,7 @@
 <div class="flex flex-col justify-center h-screen mx-3">
-  <h1 class="mb-4 font-bold text-4xl">Flight Booker</h1>
+  <%= link_to 'Flight Booker', root_path, class: 'mb-4 font-bold text-4xl' %>
 
   <%= render 'search_form', airports: @airports %>
+
+  <%= render 'search_results', flights: @available_flights %>
 </div>

@@ -17,4 +17,8 @@ class Airport < ApplicationRecord
     class_name: :Flight,
     foreign_key: :arriving_airport_id,
     dependent: :destroy
+
+  def info
+    "#{code} - #{location}"
+  end
 end
