@@ -2,5 +2,14 @@
 <h1 class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></h1>
 
 <%= form_with model: @booking do |f| %>
-  
+  <%= f.hidden_field :flight_id, value: @flight.id %>
+
+  <%= f.fields_for :passengers do |p| %>
+    <div class="mb-3">
+      <p class="font-medium text-xs">FLIGHT PASSENGER <%= @passenger_num %></p>
+      <%= p.text_field :name, placeholder: 'Passenger Name', class: 'rounded-xl' %>
+      <% @passenger_num += 1 %>
+    </div>
+  <% end %>
+  <%= f.submit 'Complete Booking', class: 'btn-primary' %>
 <% end %>

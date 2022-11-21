@@ -1,31 +1,29 @@
 <div class="bg-red-200 mb-4 flex-col md:flex items-center gap-2">
-  <%= form_with model: airports, url: flights_path, method: :get do |f| %>
+  <%= form_with model: airports, url: flights_path, method: :get, remote: true do |f| %>
     <div class="flex flex-col md:flex-row gap-1 items-center">
       <i class="ri-flight-takeoff-line"></i>
-      <%= f.label 'Departing from?' %>
-      <%= f.collection_select :departing_airport_id, airports, :id, :location %>
+      <%#= f.select :departing_airport_id, options_for_select(@airports, selected: params[:departing_airport_id]) %>
+      <%= f.collection_select :departing_airport_id, airports, :id, :location, { selected: params.dig(:airport, :departing_airport_id), prompt: 'Departing from?' }, class: 'rounded-xl' %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
       <i class="ri-flight-land-line"></i>
-      <%= f.label 'Going to?' %>
-      <%= f.collection_select :arriving_airport_id, airports, :id, :location %>
+      <%#= f.select :arriving_airport_id, options_for_select(@airports, selected: params[:arriving_airport_id]) %>
+      <%= f.collection_select :arriving_airport_id, airports, :id, :location, { selected: params.dig(:airport, :arriving_airport_id), prompt: 'Going to?'}, class: 'rounded-xl' %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
-      <i class="ri-emotion-happy-line"></i>
-      <%= f.label :passenger_count, 'Passengers' %>
-      <%= f.select :passenger_count, 1..4 %>
+      <i class="ri-user-fill"></i>
+      <%= f.select :passenger_count, 1..4, { selected: params.dig(:airport, :passenger_count), prompt: 'Passengers' }, class: 'rounded-xl' %>
     </div>
   
     <div class="flex flex-col md:flex-row gap-1 items-center">
       <i class="ri-calendar-2-fill"></i>
-      <%= f.label 'Date' %>
-      <%= f.date_field :date %>
+      <%= f.date_field :date, value: params.dig(:airport, :date), class: 'rounded-xl' %>
     </div>
 
     <div class="flex justify-center mt-3 md:mt-0 items-center">
-      <%= f.submit 'Get Flights' %>
+      <%= f.submit 'Get Flights', class: "btn-primary" %>
     </div>
   <% end %>
 </div>

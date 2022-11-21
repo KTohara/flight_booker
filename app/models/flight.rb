@@ -19,7 +19,8 @@ class Flight < ApplicationRecord
   has_many :passengers, through: :bookings
 
   scope :find_flights, -> params {
-    where(
+    includes(:departing_airport, :arriving_airport)
+    .where(
       departing_airport_id: params[:departing_airport_id],
       arriving_airport_id: params[:arriving_airport_id],
       departure_date: params[:date]

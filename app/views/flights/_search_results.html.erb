@@ -1,5 +1,5 @@
 <% if flights %>
-  <table class='table-auto'>
+  <table class="table-auto">
     <thead>
       <tr>
         <th>Departing Airport</th>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <% flights.each do |flight| %>
-        <tr class=''>
+        <tr>
           <td><%= flight.departing_airport.code %></td>
           <td><%= flight.arriving_airport.code %></td>
           <td><%= flight.departure_date.strftime('%m/%d/%Y') %></td>
@@ -21,7 +21,8 @@
                   new_booking_path(
                     flight_id: flight.id,
                     passenger_count: params[:airport][:passenger_count]
-                  ) %></td>
+                  ),
+                  class: 'btn-primary' %></td>
         </tr>
       <% end %>
     </tbody>
