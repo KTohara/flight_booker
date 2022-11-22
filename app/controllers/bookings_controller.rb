@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def show
+    @booking = Booking.includes(:passengers).find(params[:id])
   end
   
   def new
@@ -12,7 +13,12 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    debugger
+    @booking.user = current_user
+    if @booking.save
+      redirect_to @booking, notice: "Congratulations! You've booked your flight"
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

@@ -1,0 +1,11 @@
+<p><%= @booking.user.username.titleize %>, your flight has been booked!</p>
+<br>
+<p>Departing from: <%= @booking.flight.departing_airport.location %> | <%= @booking.flight.departing_airport.code %></p>
+<p>Arriving at: <%= @booking.flight.arriving_airport.location %> | <%= @booking.flight.arriving_airport.code %> </p>
+<p>Departure date: <%= @booking.flight.departure_date.strftime('%B %d, %Y') %></p>
+<p>Departure time: <%= @booking.flight.departure_time.strftime('%l:%M%p') %></p>
+<br>
+<p>Passengers: </p>
+<% @booking.passengers.each_with_index do |passenger, i| %>
+  <p><%= i + 1 %>. <%= passenger.name.titleize %></p>
+<% end %>
