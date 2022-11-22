@@ -1,7 +1,9 @@
 <div class="flex flex-col justify-center mx-3">
-  <%= link_to 'Flight Booker', root_path, class: 'mb-4 font-bold text-4xl' %>
+  <%= render 'home' unless current_user %>
 
-  <%= render 'search_form', airports: @airports %>
+  <% if current_user %>
+    <%= render 'search_form', airports: @airports %>
 
-  <%= render 'search_results', flights: @available_flights %>
+    <%= render 'search_results', flights: @available_flights %>
+  <% end %>
 </div>

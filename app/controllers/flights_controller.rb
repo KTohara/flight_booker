@@ -1,7 +1,10 @@
 class FlightsController < ApplicationController
   def index
     @airports = Airport.order(:location)
-    @available_flights = search_flights if params[:airport]
+    return unless params[:airport]
+
+    validate_search
+    @available_flights = Flight.find_flights(search_params)
   end
 
   private
@@ -10,7 +13,7 @@ class FlightsController < ApplicationController
       params.require(:airport).permit(:departing_airport_id, :arriving_airport_id, :date, :passenger_count)
     end
 
-    def search_flights
+    def validate_search
       if search_params[:departing_airport_id] == search_params[:arriving_airport_id]
         flash.now[:alert] = 'Please choose two different cities!'
         render :index
@@ -20,8 +23,6 @@ class FlightsController < ApplicationController
       elsif search_params[:date].blank?
         flash.now[:alert] = 'Please pick a date!'
         render :index
-      else
-        Flight.find_flights(search_params)
       end
     end
 end

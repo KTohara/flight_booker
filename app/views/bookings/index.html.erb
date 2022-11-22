@@ -1,0 +1,11 @@
+<h1 class="my-4 font-light uppercase text-sm">Your Flights</h1>
+
+<% @bookings.each do |booking| %>
+  <div class="mb-4">
+    <%= link_to booking.flight.arriving_airport.location, booking_path(booking), class: "mb-2 font-bold text-xl"%>
+    <p class="mt-1 font-light">Departing from: <%= booking.flight.departing_airport.location %> | <%= booking.flight.departing_airport.code %></p>
+    <p class="mt-1 font-light">Arriving at: <%= booking.flight.arriving_airport.location %> | <%= booking.flight.arriving_airport.code %> </p>
+    <p class="mt-1 font-light">Departure date: <%= booking.flight.departure_date.strftime('%B %d, %Y') %></p>
+    <p class="mt-1 font-light">Departure time: <%= booking.flight.departure_time.strftime('%l:%M%p') %></p>
+  </div>
+<% end %>

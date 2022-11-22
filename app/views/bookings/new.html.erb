@@ -1,9 +1,9 @@
-<p class="mt-4 font-light text-sm">PLAN YOUR TRIP TO</p>
-<h1 class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></h1>
+<h1 class="mt-4 font-light uppercase text-sm">Plan your trip to</h1>
+<p class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></p>
 
 <%= form_with model: @booking do |f| %>
   <%= f.hidden_field :flight_id, value: @flight.id %>
-
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.fields_for :passengers do |p| %>
     <div class="mb-3">
       <p class="font-medium text-xs">FLIGHT PASSENGER <%= p.index + 1 %></p>
