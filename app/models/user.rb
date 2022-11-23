@@ -19,7 +19,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bookings, dependent: :destroy
-  has_many :flights, through: :bookings, source: :passenger
+  has_many :flights, through: :bookings
 
   validates :username, presence: true, uniqueness: true, length: { in: 3..15 }
 end

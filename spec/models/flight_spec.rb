@@ -14,5 +14,10 @@
 require 'rails_helper'
 
 RSpec.describe Flight, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should belong_to(:departing_airport) }
+    it { should belong_to(:arriving_airport) }
+    it { should have_many(:bookings).dependent(:destroy) }
+    it { should have_many(:passengers).through(:bookings) }
+  end
 end

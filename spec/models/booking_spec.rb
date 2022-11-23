@@ -11,5 +11,10 @@
 require 'rails_helper'
 
 RSpec.describe Booking, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:flight) }
+    it { should have_many(:passengers).dependent(:destroy) }
+    it { should accept_nested_attributes_for(:passengers) }
+  end
 end
