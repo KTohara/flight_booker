@@ -1,34 +1,42 @@
-<h2>Sign up</h2>
+<div class="container mx-auto md:max-w-lg md:mt-52 mt-12 bg-inherit max-w-sm">
+  <%= image_tag 'splash.png', class: 'px-6 mb-5 md:px-0 scale-75' %>
+  <h2 class="text-2xl mb-4 font-bold lowercase text-center tracking-[.3rem] text-blue-400">Signup</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true %>
+  <div class="p-8 mb-4 bg-sky-200 border-2 border-blue-400 rounded-2xl shadow-blue-50">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
+      <div class="mb-3">
+        <%= f.label :username, class: 'font-medium text-sm tracking-wider text-gray-700' %>
+        <%= f.text_field :username, autofocus: true, class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :username %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :email, class: 'font-medium text-sm tracking-wider text-gray-700' %>
+        <%= f.email_field :email, class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :email %>
+      </div>
+    
+      <div class="mb-3">
+        <%= f.label :password, class: 'font-medium text-sm tracking-wider text-gray-700' %>
+        <% if @minimum_password_length %>
+          <em class="font-medium text-sm tracking-wider text-gray-700">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :password %>
+      </div>
+    
+      <div class="mb-3">
+        <%= f.label :password_confirmation, class: 'font-medium text-sm tracking-wider text-gray-700' %>
+        <%= f.password_field :password_confirmation, class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :password_confirmation %>
+      </div>
+    
+      <div class="flex justify-center">
+        <%= f.submit "Sign up", class: 'btn-primary' %>
+      </div>
+    <% end %>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="text-sm text-center">
+  <p class="mb-1 text-gray-700">Already signed up? <%= link_to 'Log In', new_session_path(resource_name), class: 'text-blue-400' %></p>
+</div>

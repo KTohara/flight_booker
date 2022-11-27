@@ -1,16 +1,19 @@
-<div class="container mx-auto bg-inherit max-w-sm md:max-w-lg mt-52">
-  <h2 class="text-4xl mb-4 font-bold lowercase text-center tracking-widest text-blue-400">Login</h2>
+<div class="container mx-auto md:max-w-lg md:mt-52 mt-12 bg-inherit max-w-sm">
+  <%= image_tag 'splash.png', class: 'px-6 mb-5 md:px-0 scale-75' %>
+  <h2 class="text-2xl mb-4 font-bold lowercase text-center tracking-[.3rem] text-blue-400">Login</h2>
   
-  <div class="p-8 bg-sky-200 mb-4 border-2 border-blue-400 rounded-2xl shadow-blue-50">
+  <div class="p-8 mb-4 bg-sky-200 border-2 border-blue-400 rounded-2xl shadow-blue-50">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
       <div class="mb-3">
-        <%= f.label :email, class: 'font-light text-gray-700' %><br />
+        <%= f.label :email, class: 'font-medium text-sm tracking-wider text-gray-700' %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :email %>
       </div>
     
       <div class="mb-3">
-        <%= f.label :password, class: 'font-light text-gray-700' %><br />
+        <%= f.label :password, class: 'font-medium text-sm tracking-wider text-gray-700' %><br />
         <%= f.password_field :password, autocomplete: "current-password" , class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+        <%= render 'devise/shared/error_messages', resource: resource, param_type: :password %>
       </div>
     
       <% if devise_mapping.rememberable? %>
@@ -20,7 +23,7 @@
         </div>
       <% end %>
     
-      <div class="actions flex justify-center">
+      <div class="flex justify-center">
         <%= f.submit "Log in", class: 'btn-primary' %>
       </div>
     <% end %>
