@@ -1,26 +1,33 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container mx-auto bg-inherit max-w-sm md:max-w-lg mt-52">
+  <h2 class="text-4xl mb-4 font-bold lowercase text-center tracking-widest text-blue-400">Login</h2>
+  
+  <div class="p-8 bg-sky-200 mb-4 border-2 border-blue-400 rounded-2xl shadow-blue-50">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
+      <div class="mb-3">
+        <%= f.label :email, class: 'font-light text-gray-700' %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+      </div>
+    
+      <div class="mb-3">
+        <%= f.label :password, class: 'font-light text-gray-700' %><br />
+        <%= f.password_field :password, autocomplete: "current-password" , class: 'py-2 px-4 block w-full border-2 border-blue-400 rounded-md appearance-none focus:outline-none leading-normal' %>
+      </div>
+    
+      <% if devise_mapping.rememberable? %>
+        <div class="flex items-center mb-3 text-sm text-gray-700">
+          <%= f.check_box :remember_me, class: 'outline-0 border border-gray-300 rounded focus:outline-none transition duration-200 cursor-pointer mr-1' %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+    
+      <div class="actions flex justify-center">
+        <%= f.submit "Log in", class: 'btn-primary' %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="text-sm text-center">
+    <p class="mb-1 text-gray-700">Don't have an account yet? <%= link_to 'Sign Up', new_registration_path(resource_name), class: 'text-blue-400' %></p>
+    <p class="text-gray-700">Forgot password? <%= link_to 'Reset Password', new_password_path(resource_name), class: 'text-blue-400' %></p>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

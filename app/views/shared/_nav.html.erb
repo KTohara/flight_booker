@@ -1,15 +1,16 @@
 <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-blue-400 mb-3">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
-    <div class="w-full relative flex justify-between lg:w-auto  px-4 lg:static lg:block lg:justify-start">
-      <%= image_tag('plane.svg', class: "h-6 mr-3 sm:h-9 inline-block self-center", alt: 'Logo') %> 
-      <%= link_to 'Flight Booker', root_path, class: 'text-lg font-semibold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white justify-self-start' %>
-      <span class='text-sm leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white justify-self-start'><%= "Account: #{current_user.username}" if current_user %></span>
-      <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('example-collapse-navbar')">
+    <div class="w-full relative flex justify-between md:w-auto px-4 md:static md:block md:justify-start">
+      <div>
+        <%= image_tag 'fb-icon.svg', class: "h-6 mr-1 sm:h-8 inline-block self-center", alt: 'Logo' %>
+        <%= link_to 'Flight Booker', root_path, class: 'text-lg leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white justify-self-start' %>
+      </div>
+      <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('collapse-navbar')">
         <i class="ri-menu-line"></i>
       </button>
     </div>
-    <div class="lg:flex flex-grow items-center hidden" id="example-collapse-navbar">
-      <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
+    <div class="md:flex flex-grow items-center hidden" id="collapse-navbar">
+      <ul class="flex flex-col md:flex-row list-none md:ml-auto">
         <% if current_user %>
           <li class="nav-item">
             <%= link_to root_path, class: "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" do %>
