@@ -1,14 +1,24 @@
 <h1 class="mt-4 font-light uppercase text-sm">Plan your trip to</h1>
 <p class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></p>
-
-<%= form_with model: @booking do |f| %>
-  <%= f.hidden_field :flight_id, value: @flight.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.fields_for :passengers do |p| %>
-    <div class="mb-3">
-      <p class="font-medium text-xs">FLIGHT PASSENGER <%= p.index + 1 %></p>
-      <%= p.text_field :name, placeholder: 'Passenger Name', class: 'rounded-xl' %>
+<div class="max-w-md w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md">
+  <%= render 'flights/flight', flight: @flight %>
+</div>
+  <div class="my-5 py-4 border-2 max-w-md w-full flex justify-center rounded-xl bg-white shadow-md">
+    <div class="flex flex-col items-center">
+      <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passenger Information</p>
+      <hr class="border-t-2 my-2 w-full">
+      <%= form_with model: @booking do |f| %>
+        <%= f.hidden_field :flight_id, value: @flight.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.fields_for :passengers do |p| %>
+          <div class="mb-3">
+            <p class="font-md text-xs text-gray-600 uppercase">Flight Passenger <%= p.index + 1 %></p>
+            <%= p.text_field :name, placeholder: 'Passenger Name', class: 'text-sm rounded-xl' %>
+          </div>
+        <% end %>
+        <div class="flex justify-center">
+          <%= f.submit 'Complete Booking', class: 'btn-primary' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <%= f.submit 'Complete Booking', class: 'btn-primary' %>
-<% end %>
+  </div>

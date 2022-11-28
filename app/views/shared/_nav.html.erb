@@ -1,9 +1,11 @@
-<nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-blue-400 mb-3">
+<nav class="relative flex flex-wrap items-center justify-between px-2 py-5 bg-blue-400 mb-3">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
     <div class="w-full relative flex justify-between md:w-auto px-4 md:static md:block md:justify-start">
-      <div>
-        <%= image_tag 'fb-icon.svg', class: "h-6 mr-1 sm:h-8 inline-block self-center", alt: 'Logo' %>
-        <%= link_to 'Flight Booker', root_path, class: 'text-lg leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white justify-self-start' %>
+      <div class="flex justify-center gap-4">
+        <%= link_to root_path, class: 'font-extrabold text-lg text-white tracking-widest uppercase' do %>
+          <%= image_tag 'fb-icon.svg', class: "h-6 mr-1 sm:h-8 inline-block ", alt: 'Logo' %>
+          <span>Flight Booker</span>
+        <% end %>
       </div>
       <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('collapse-navbar')">
         <i class="fa-solid fa-bars"></i>
@@ -13,7 +15,7 @@
       <ul class="flex flex-col md:flex-row list-none md:ml-auto">
         <% if current_user %>
           <li class="nav-item">
-            <%= link_to root_path, class: "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" do %>
+            <%= link_to bookings_path, class: "px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" do %>
               <i class="ri-plane-line text-lg leading-lg text-white opacity-75"></i><span class="ml-2">My Flights</span>
             <% end %>
           </li>

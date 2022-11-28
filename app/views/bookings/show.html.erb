@@ -1,11 +1,14 @@
-<p><%= @booking.user.username.titleize %>, your flight has been booked!</p>
-<br>
-<p>Departing from: <%= @booking.flight.departing_airport.location %> | <%= @booking.flight.departing_airport.code %></p>
-<p>Arriving at: <%= @booking.flight.arriving_airport.location %> | <%= @booking.flight.arriving_airport.code %> </p>
-<p>Departure date: <%= @booking.flight.departure_date.strftime('%B %d, %Y') %></p>
-<p>Departure time: <%= @booking.flight.departure_time.strftime('%l:%M%p') %></p>
-<br>
-<p>Passengers: </p>
-<% @booking.passengers.each_with_index do |passenger, i| %>
-  <p><%= i + 1 %>. <%= passenger.name.titleize %></p>
-<% end %>
+<div class="max-w-md w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md group">
+  <p class="my-3 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Your Trip Summary</p>
+  <%= render 'flights/flight', flight: @booking.flight %>
+</div>
+<div class="flex flex-col justify-center gap-2 max-w-md w-full my-2 mx-5 p-4 rounded-xl bg-white shadow-md">
+  <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passengers</p>
+  <hr class="text-gray-700 border-t-2 my-2">
+  <% @booking.passengers.each_with_index do |passenger, i| %>
+    <div class="pl-5 flex gap-x-2 items-baseline text-gray-700">
+      <p class="text-sm"><%= i + 1 %>.</p>
+      <span class="text-md"><%= passenger.name.titleize %></span>
+    </div>
+  <% end %>
+</div>
