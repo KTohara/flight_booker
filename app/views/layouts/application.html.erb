@@ -7,7 +7,8 @@
 
     <title>Flight Booker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">    <%= csrf_meta_tags %>
+    <script src="https://kit.fontawesome.com/6191f9c23a.js" defer crossorigin="anonymous"></script>
+    <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -15,9 +16,9 @@
   </head>
 
   <body class="bg-sky-50">
-    <%= render 'shared/nav' unless current_page?(root_path) || devise_controller? %>
+    <%= render 'shared/nav' unless current_page?(home_path) || devise_controller? %>
     <%= render 'shared/alerts' %>
-    <main class="container mx-auto">
+    <main class="flex flex-col place-items-center">
       <%= yield %>
     </main>
   </body>

@@ -6,10 +6,10 @@
         <%= link_to 'Flight Booker', root_path, class: 'text-lg leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-white justify-self-start' %>
       </div>
       <button class="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block md:hidden outline-none focus:outline-none" type="button" onclick="toggleNavbar('collapse-navbar')">
-        <i class="ri-menu-line"></i>
+        <i class="fa-solid fa-bars"></i>
       </button>
     </div>
-    <div class="md:flex flex-grow items-center hidden" id="collapse-navbar">
+    <div class="md:flex flex-grow items-center hidden transition duration-200" id="collapse-navbar">
       <ul class="flex flex-col md:flex-row list-none md:ml-auto">
         <% if current_user %>
           <li class="nav-item">

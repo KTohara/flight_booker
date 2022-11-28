@@ -1,4 +1,9 @@
 class FlightsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  
+  def home
+  end
+
   def index
     @airports = Airport.order(:location)
     return unless params[:airport]

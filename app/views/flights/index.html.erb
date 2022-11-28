@@ -1,9 +1,4 @@
-<div class="flex flex-col place-items-center">
-  <%= render 'home' unless current_user %>
-
-  <% if current_user %>
-    <%= render 'search_form', airports: @airports %>
-
-    <%= render 'search_results', flights: @available_flights %>
-  <% end %>
-</div>
+<%# <div class="flex flex-col place-items-center"> %>
+  <%= render 'search_form', airports: @airports %>
+  <%= render 'search_results', flights: @available_flights %>
+<%# </div> %>

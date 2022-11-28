@@ -1,30 +1,23 @@
 <% if flights %>
-  <table class="table-auto">
-    <thead>
-      <tr>
-        <th>Departing Airport</th>
-        <th>Arriving Airport</th>
-        <th>Date</th>
-        <th>Departure Time</th>
-        <th>Duration</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% flights.each do |flight| %>
-        <tr>
-          <td><%= flight.departing_airport.code %></td>
-          <td><%= flight.arriving_airport.code %></td>
-          <td><%= flight.departure_date.strftime('%m/%d/%Y') %></td>
-          <td><%= flight.departure_time.strftime('%l:%M%P') %></td>
-          <td><%= flight.duration %> hours</td>
-          <td><%= link_to 'Book Flight',
-                  new_booking_path(
-                    flight_id: flight.id,
-                    passenger_count: params[:airport][:passenger_count]
-                  ),
-                  class: 'btn-primary' %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <% flights.each do |flight| %>
+    <div class="max-w-lg sm:max-w-3xl mt-2 sm:mt-5 w-full mx-5">
+      <div class="py-10 place-items-center space-y-2 rounded-xl bg-white shadow-md">
+        <div class="mx-5 sm:mx-0 flex justify-between">
+          <div class="flex flex-col items-end basis-1/5">
+            <p class="text-sm text-gray-800 mb-3"><%= flight.duration %> hours</p>
+            <p class="text-lg font-bold text-gray-800"><%= flight.departure_time.strftime('%l:%M%P') %></p>
+            <p class="text-lg tracking-wide text-gray-800"><%= flight.departing_airport.code %></p>
+          </div>
+          <div class="mx-5 flex basis-3/5 items-center">
+            <hr class="mx-auto w-full h-1 bg-gray-300 rounded border-0 dark:bg-gray-700">
+          </div>
+          <div class="flex flex-col items-start basis-1/5">
+            <p class="text-sm text-gray-800 mb-3"><%= flight.departure_date.strftime('%a, %b %-d') %></p>
+            <p class="text-lg font-bold text-gray-800"><%= (flight.departure_time + flight.duration.hours).strftime('%l:%M%P')  %></p>
+            <p class="text-lg tracking-wide text-gray-800"><%= flight.arriving_airport.code %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>

@@ -1,6 +1,6 @@
-<div class="container mx-auto md:max-w-lg md:mt-52 mt-12 bg-inherit max-w-sm">
-  <%= image_tag 'splash.png', class: 'px-6 mb-5 md:px-0 scale-75' %>
-  <h2 class="text-2xl mb-4 font-bold lowercase text-center tracking-[.3rem] text-blue-400">Signup</h2>
+<div class="mx-5 max-w-sm md:max-w-lg mt-10 md:mt-52 bg-inherit">
+  <%= image_tag 'splash.png', class: 'mb-3' %>
+  <h2 class="text-2xl mb-4 font-bold lowercase text-center whitespace-nowrap tracking-[.3rem] text-blue-400">Signup</h2>
 
   <div class="p-8 mb-4 bg-sky-200 border-2 border-blue-400 rounded-2xl shadow-blue-50">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: false }) do |f| %>
