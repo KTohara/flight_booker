@@ -27,11 +27,22 @@ class Flight < ApplicationRecord
     ) 
   }
 
-  def origin
-    departing_airport.info
+  def arrival_date_formatted
+    departure_minutes = departure_time.hour * 60 + departure_time.min
+    total_travel_minutes = departure_minutes + (duration * 60)
+    total_days = total_travel_minutes / 1440 # 1440 = total min in day
+    (departure_date + total_days).strftime('%a, %b %-d')
   end
 
-  def destination
-    arriving_airport.info
+  def arrival_time_formatted
+    (departure_time + duration.hours).strftime('%l:%M%P')
+  end
+
+  def departure_date_formatted
+    departure_date.strftime('%a, %b %-d')
+  end
+
+  def departure_time_formatted
+    departure_time.strftime('%l:%M%P')
   end
 end

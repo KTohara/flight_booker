@@ -1,6 +1,22 @@
-Congratualtions <%= @user.username %>!
-===============================================
 
-You have successfully booked your flight at FlightBooker!
+Thank you for using FlightBooker!
+=================================
+
+Congratualtions <%= @user.username %>!
+Please review your trip details below
 
 Flight Details:
+<%= link_to 'View Trip Details', @url %>
+
+Departing City: <%= @flight.departure_date_formatted %>
+Departure Date: <%= @flight.departing_airport.code %> - <%= @flight.departing_airport.location %>
+Departure Time: <%= @flight.departure_time_formatted %>
+Arriving City: <%= @flight.arriving_airport.code %> - <%= @flight.arriving_airport.location %>
+Arrival Date: <%= @flight.departure_date_formatted %>
+Arrival Time: <%= @flight.departure_date_formatted %>
+
+Passengers:
+
+<% @booking.passengers.each do |passenger| %>
+  <%= passenger.name.titleize %></li>
+<% end %>
