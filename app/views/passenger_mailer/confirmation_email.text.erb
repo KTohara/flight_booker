@@ -1,4 +1,3 @@
-
 Thank you for using FlightBooker!
 =================================
 
@@ -8,15 +7,15 @@ Please review your trip details below
 Flight Details:
 <%= link_to 'View Trip Details', @url %>
 
-Departing City: <%= @flight.departure_date_formatted %>
-Departure Date: <%= @flight.departing_airport.code %> - <%= @flight.departing_airport.location %>
+Departing City: <%= @flight.departing_airport.code %> - <%= @flight.departing_airport.location %>
+Departure Date: <%= @flight.departure_date_formatted %>
 Departure Time: <%= @flight.departure_time_formatted %>
 
 Arriving City: <%= @flight.arriving_airport.code %> - <%= @flight.arriving_airport.location %>
-Arrival Date: <%= @flight.departure_date_formatted %>
-Arrival Time: <%= @flight.departure_date_formatted %>
+Arrival Date: <%= @flight.arrival_date_formatted %>
+Arrival Time: <%= @flight.arrival_time_formatted %>
 
-Total Estimated Flight Time: <%= "#{pluralize(@flight.duration_hours, 'hour') @flight.duration_minutes} minutes" %>
+Total Estimated Flight Time: <%= "#{pluralize(@flight.duration_hours, 'hour')} #{@flight.duration_minutes} minutes" %>
 
 Passengers:
 

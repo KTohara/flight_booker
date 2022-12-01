@@ -1,5 +1,5 @@
 <%= render 'search_form', airports: @airports %>
-<% if @available_flights %>
+<% if @available_flights && @available_flights.count > 0 %>
   <%= render 'sort', airports: @airports, sort_options: @sort_options %>
 <% end %>
 <%= render 'search_results', flights: @available_flights if @available_flights %>
