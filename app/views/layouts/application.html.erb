@@ -18,7 +18,7 @@
   <body class="bg-sky-50">
     <%= render 'shared/nav' unless current_page?(home_path) || devise_controller? %>
     <%= render 'shared/alerts' %>
-    <main class="container mx-auto max-w-3xl justify-center items-center">
+    <main class="container mx-auto max-w-3xl place-items-center">
       <%= yield %>
     </main>
   </body>

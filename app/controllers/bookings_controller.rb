@@ -18,7 +18,6 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @passenger_count = params[:passenger_count].to_i
     @passenger_count.times { @booking.passengers.build }
-    @passenger_num = 1
   end
 
   def create

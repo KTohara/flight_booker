@@ -1,11 +1,13 @@
 <div class="group">
   <div class="pl-2 sm:pl-10 flex justify-between gap-2 sm:gap-5">
+    <!-- card left side -->
     <div class="flex flex-col basis-1/6 items-end">
       <p class="text-xs sm:text-md text-gray-800 whitespace-nowrap"><%= flight.departure_date_formatted %></p>
       <p class="text-md sm:text-lg font-bold text-gray-800"><%= flight.departure_time_formatted %></p>
       <p class="text-lg tracking-wide text-gray-800"><%= flight.departing_airport.code %></p>
     </div>
     
+    <!-- card center plane svg -->
     <div class="w-full flex flex-col items-center justify-center relative">
       <p class="-mt-7 mb-3 text-xs text-gray-800 whitespace-nowrap">
         <%= "#{pluralize(flight.duration_hours, 'hour')} #{flight.duration_minutes} min" %>
@@ -14,12 +16,14 @@
       <hr class="mx-auto w-full border-t-[3px] bg-gray-300 rounded">
     </div>
 
+    <!-- card right side -->
     <div class="flex flex-col basis-1/6 items-start">
       <p class="text-xs text-gray-800 whitespace-nowrap"><%= flight.arrival_date_formatted %></p>
       <p class="text-md sm:text-lg font-bold text-gray-800"><%= flight.arrival_time_formatted %></p>
       <p class="text-lg tracking-wide text-gray-800"><%= flight.arriving_airport.code %></p>
     </div>
 
+    <!-- price right side-->
     <div class="px-2 sm:pr-0 flex justify-center items-center sm:basis-2/6 border-l-2">
       <p class="font-bold text-md text-green-600">$<%= flight.price %></p>
     </div>

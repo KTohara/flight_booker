@@ -1,7 +1,9 @@
 <h1 class="my-3 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Your Flights</h1>
 
 <% @bookings.each do |booking| %>
-  <%= link_to booking_path(booking), class: 'max-w-lg w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md group' do %>
-    <%= render 'flights/flight', flight: booking.flight %>
-  <% end %>
+  <div class="flex flex-col items-center mx-2 sm:mx-0">
+    <%= link_to booking_path(booking), class: 'max-w-lg w-full mx-5 my-1 py-4 rounded-xl bg-white shadow group' do %>
+      <%= render 'flights/flight', flight: booking.flight %>
+    <% end %>
+  </div>
 <% end %>

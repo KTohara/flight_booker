@@ -1,14 +1,17 @@
-<div class="max-w-md w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md group">
-  <p class="my-3 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Your Trip Summary</p>
-  <%= render 'flights/flight', flight: @booking.flight %>
-</div>
-<div class="flex flex-col justify-center gap-2 max-w-md w-full my-2 mx-5 p-4 rounded-xl bg-white shadow-md">
-  <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passengers</p>
-  <hr class="text-gray-700 border-t-2 my-2">
-  <% @booking.passengers.each_with_index do |passenger, i| %>
-    <div class="pl-5 flex gap-x-2 items-baseline text-gray-700">
-      <p class="text-sm"><%= i + 1 %>.</p>
-      <span class="text-md"><%= passenger.name.titleize %></span>
-    </div>
-  <% end %>
+<div class="mx-3 sm:mx-0 flex flex-col items-center">
+  <h3 class="mt-10 mb-3 text-blue-500 font-light text-2xl tracking-wider uppercase text-center">Thank you for booking with us!</h3>
+  <div class="max-w-xl w-full my-2 py-4 rounded-xl bg-white shadow-md group">
+    <p class="my-3 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Your Trip Summary</p>
+    <%= render 'flights/flight', flight: @booking.flight %>
+  </div>
+  <div class="flex flex-col justify-center gap-2 max-w-md w-full my-2 mx-5 p-4 rounded-xl bg-white shadow-md">
+    <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passengers</p>
+    <hr class="text-gray-700 border-t-2 my-2">
+    <% @booking.passengers.each_with_index do |passenger, i| %>
+      <div class="pl-5 flex gap-x-2 items-baseline text-gray-700">
+        <p class="text-sm"><%= i + 1 %>.</p>
+        <span class="text-md"><%= passenger.name.titleize %></span>
+      </div>
+    <% end %>
+  </div>
 </div>
