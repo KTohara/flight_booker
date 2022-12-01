@@ -11,9 +11,12 @@ Flight Details:
 Departing City: <%= @flight.departure_date_formatted %>
 Departure Date: <%= @flight.departing_airport.code %> - <%= @flight.departing_airport.location %>
 Departure Time: <%= @flight.departure_time_formatted %>
+
 Arriving City: <%= @flight.arriving_airport.code %> - <%= @flight.arriving_airport.location %>
 Arrival Date: <%= @flight.departure_date_formatted %>
 Arrival Time: <%= @flight.departure_date_formatted %>
+
+Total Estimated Flight Time: <%= "#{pluralize(@flight.duration_hours, 'hour') @flight.duration_minutes} minutes" %>
 
 Passengers:
 

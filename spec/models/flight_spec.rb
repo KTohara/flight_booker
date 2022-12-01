@@ -10,6 +10,7 @@
 #  arriving_airport_id  :bigint
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  price                :integer          not null
 #
 require 'rails_helper'
 

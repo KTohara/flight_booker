@@ -1,9 +1,14 @@
-<% if flights %>
-  <% flights.each do |flight| %>
-    <div class="max-w-lg sm:max-w-3xl w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md">
-      <%= link_to new_booking_path(flight_id: flight.id, passenger_count: params[:airport][:passenger_count]) do %>
-        <%= render 'flight', flight: flight %>
-      <% end%>
-    </div>
-  <% end %>
+<% if flights.count > 0 %>
+  <div class="mt-0 border-2 border-blue-400 rounded-xl bg-white">
+    <% flights.each do |flight| %>
+      <div class="py-4 border-b border-gray-300 last:border-none">
+        <%= link_to new_booking_path(flight_id: flight.id, passenger_count: params[:airport][:passenger_count]) do %>
+          <%= render 'flight', flight: flight %>
+        <% end%>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="mt-10 my-3 text-blue-500 font-light text-lg tracking-wider uppercase text-center">No flights available</p>
+  <p class="my-3 text-blue-500 font-light text-md tracking-wider text-center">Please check dates within three days from now for demo purposes</p>
 <% end %>

@@ -1,7 +1,9 @@
 <h1>Thank you for using FlightBooker!</h1>
 <hr>
+
 <h2>Congratualtions <%= @user.username %>!</h2>
 <p>Please review your trip details below.</p>
+
 <h2>Flight Details</h2>
 <br>
 <%= link_to 'View Trip Details', @url %>
@@ -13,6 +15,8 @@
 <p>Arriving City: <%= @flight.arriving_airport.code %> - <%= @flight.arriving_airport.location %></p>
 <p>Arrival Date: <%= @flight.departure_date_formatted %></p>
 <p>Arrival Time: <%= @flight.departure_date_formatted %></p>
+<br>
+<p>Total Estimated Flight Time: <%= "#{pluralize(@flight.duration_hours, 'hour') @flight.duration_minutes} minutes" %></p>
 
 <h2>Passengers</h2>
 <ul>

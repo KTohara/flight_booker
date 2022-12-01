@@ -1,6 +1,6 @@
 class FlightsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  
+
   def home
   end
 
@@ -9,13 +9,15 @@ class FlightsController < ApplicationController
     return unless params[:airport]
 
     validate_search
-    @available_flights = Flight.find_flights(search_params)
+    @available_flights = Flight.find_flights(search_params).order(:departure_time)
+    @sort_options = %i[Time Price Duration]
+    @available_flights = sort_flights if params[:airport][:sort]
   end
 
   private
 
     def search_params
-      params.require(:airport).permit(:departing_airport_id, :arriving_airport_id, :date, :passenger_count)
+      params.require(:airport).permit(:departing_airport_id, :arriving_airport_id, :date, :passenger_count, :price, :sort)
     end
 
     def validate_search
@@ -28,6 +30,17 @@ class FlightsController < ApplicationController
       elsif search_params[:date].blank?
         flash.now[:alert] = 'Please pick a date!'
         render :index
+      end
+    end
+    
+    def sort_flights
+      case params[:airport][:sort]
+      when 'Duration'
+        Flight.find_flights(search_params).order(:duration)
+      when 'Time'
+        Flight.find_flights(search_params).order(:departure_time)
+      when 'Price'
+        Flight.find_flights(search_params).order(:price)
       end
     end
 end

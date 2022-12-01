@@ -1,20 +1,18 @@
-<div class="mt-3 md:mt-12 mx-5 max-w-lg md:max-w-3xl">
-  <%= image_tag 'splash.png', class: 'mb-5 px-6 md:px-0' %>
+<div class="flex flex-col justify-center mt-3 md:mt-12 ">
+  <%= image_tag 'splash.png', class: 'w-full md:w-[60%] mb-5 px-6 md:px-0 self-center' %>
   <div class="md:px-10 flex flex-col place-items-center md:place-items-stretch space-y-2 border-2 border-blue-400 rounded-xl bg-white">
     <%= form_with model: airports, url: flights_path, method: :get do |f| %>
-      <div class="md:flex justify-between gap-x-6 mt-10">
+      <div class="sm:flex justify-between gap-x-6 mt-10">
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-plane-departure"></i>
-          <%#= f.select :departing_airport_id, options_for_select(@airports, selected: params[:departing_airport_id]) %>
           <%= f.collection_select :departing_airport_id, airports, :id, :location, { selected: params.dig(:airport, :departing_airport_id), prompt: 'Departing from?' }, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-plane-arrival"></i>
-          <%#= f.select :arriving_airport_id, options_for_select(@airports, selected: params[:arriving_airport_id]) %>
           <%= f.collection_select :arriving_airport_id, airports, :id, :location, { selected: params.dig(:airport, :arriving_airport_id), prompt: 'Going to?'}, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
       </div>
-      <div class="md:flex justify-between gap-4 mt-3">
+      <div class="sm:flex justify-between gap-4 mt-3">
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-user mx-1"></i>
           <%= f.select :passenger_count, 1..4, { selected: params.dig(:airport, :passenger_count), prompt: 'Passengers' }, class: 'rounded-xl text-gray-500 w-full pl-5' %>
