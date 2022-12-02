@@ -26,52 +26,30 @@ def rand_price
   rand(150..400)
 end
 
-User.create(
-  username: 'Jesus',
-  email: 'jesus@example.com',
-  password: 'password'
-)
-
-Airport.create(
-  [
-    {code: "ATL", location: "Atlanta, GA"},
-    {code: "LAX", location: "Los Angeles, CA"},
-    {code: "SFO", location: "San Francisco, CA"},
-    {code: "JFK", location: "New York City, NY"}
-  ]
-)
+Airport.find_or_create_by(code: "ATL", location: "Atlanta, GA")
+Airport.find_or_create_by(code: "LAX", location: "Los Angeles, CA")
+Airport.find_or_create_by(code: "SFO", location: "San Francisco, CA")
+Airport.find_or_create_by(code: "JFK", location: "New York City, NY")
 
 airport_pairs = Airport.all.to_a.permutation(2)
 start_date = Time.zone.today
-end_date = Time.zone.today + 3.day
+end_date = Time.zone.today + 31.days
 
 (start_date..end_date).each do |date|
+  flights = Flight.where(departure_date: date)
+  next if flights.count.positive?
+
   airport_pairs.each do |pair|
-    Flight.create!(
-      departure_date: date,
-      departure_time: morning_departure,
-      duration: rand_duration,
-      price: rand_price,
-      departing_airport: pair.first,
-      arriving_airport: pair.last
-    )
-
-    Flight.create!(
-      departure_date: date,
-      departure_time: afternoon_departure,
-      duration: rand_duration,
-      price: rand_price,
-      departing_airport: pair.first,
-      arriving_airport: pair.last
-    )
-
-    Flight.create!(
-      departure_date: date,
-      departure_time: evening_departure,
-      duration: rand_duration,
-      price: rand_price,
-      departing_airport: pair.first,
-      arriving_airport: pair.last
-    )
+    departures = [morning_departure, afternoon_departure, evening_departure]
+    departures.each do |time|
+      Flight.create(
+        departure_date: date,
+        departure_time: time,
+        duration: rand_duration,
+        price: rand_price,
+        departing_airport: pair.first,
+        arriving_airport: pair.last
+      )
+    end
   end
 end

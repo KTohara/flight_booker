@@ -1,8 +1,11 @@
-<h1 class="mt-4 font-light uppercase text-sm">Plan your trip to</h1>
-<p class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></p>
-<div class="max-w-md w-full my-2 mx-5 py-4 rounded-xl bg-white shadow-md">
-  <%= render 'flights/flight', flight: @flight %>
-</div>
+<div class="flex flex-col items-center px-2 sm:px-0">
+  <h1 class="mt-4 font-light uppercase text-sm">Plan your trip to</h1>
+  <p class="mb-4 font-bold text-3xl"><%= @flight.arriving_airport.location %></p>
+  
+  <div class="max-w-2xl w-full my-2 py-4 rounded-xl bg-white shadow-md">
+    <%= render 'flights/flight', flight: @flight %>
+  </div>
+  
   <div class="my-5 py-4 border-2 max-w-md w-full flex justify-center rounded-xl bg-white shadow-md">
     <div class="flex flex-col items-center">
       <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passenger Information</p>
@@ -22,3 +25,4 @@
       <% end %>
     </div>
   </div>
+</div>
