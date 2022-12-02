@@ -33,7 +33,7 @@ Airport.find_or_create_by(code: "JFK", location: "New York City, NY")
 
 airport_pairs = Airport.all.to_a.permutation(2)
 start_date = Time.zone.today
-end_date = Time.zone.today + 31.days
+end_date = Time.zone.today + 1.week
 
 (start_date..end_date).each do |date|
   flights = Flight.where(departure_date: date)
