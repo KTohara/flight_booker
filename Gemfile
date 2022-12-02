@@ -13,12 +13,13 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "devise"
+gem "faker"
+gem "tailwindcss-rails", "~> 2.0"
 
 group :development, :test do
   gem "byebug", platforms: %i[ mri mingw x64_mingw ]
   gem "pry-rails"
   gem "factory_bot_rails"
-  gem "faker"
 end
 
 group :development do
@@ -38,5 +39,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "tailwindcss-rails", "~> 2.0"
