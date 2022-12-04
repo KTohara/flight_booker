@@ -12,9 +12,6 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
-      backgroundImage: {
-        'clouds': "url('clouds.png')"
-      }
     },
   },
   plugins: [
