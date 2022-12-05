@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     @flight = Flight.find(params[:booking][:flight_id])
 
     if @booking.save
-      PassengerMailer.with(booking: @booking).confirmation_email.deliver_now
+      PassengerMailer.with(booking_id: @booking.id).confirmation_email.deliver_now
       redirect_to @booking, notice: "#{@booking.user.username.titleize}, your flight has been booked! Confirmation email has been sent."
     else
       flash.now[:alert] = 'Please fill in all passengers.'

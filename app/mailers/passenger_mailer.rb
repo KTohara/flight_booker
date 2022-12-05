@@ -1,6 +1,6 @@
 class PassengerMailer < ApplicationMailer
   def confirmation_email
-    @booking = params[:booking]
+    @booking = Booking.find(params[:booking_id])
     @flight = @booking.flight
     @user = @booking.user
     @url = booking_url(@booking)
