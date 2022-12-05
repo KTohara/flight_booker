@@ -14,7 +14,6 @@ RSpec.feature "Users can search flights" do
   end
 
   scenario "user inputs valid options" do
-    visit flights_path
     select("New York City, NY", from: "airport_departing_airport_id")
     select("Los Angeles, CA", from: "airport_arriving_airport_id")
     select("1", from: "airport_passenger_count")
@@ -25,13 +24,13 @@ RSpec.feature "Users can search flights" do
     expect(page).to have_content("LAX")
   end
 
-  scenario "user does not input date" do
-    select("New York City, NY", from: "airport_departing_airport_id")
+  scenario "user does not complete form" do
     select("Los Angeles, CA", from: "airport_arriving_airport_id")
-    select("1", from: "airport_passenger_count")
+    fill_in("airport_date", with: Time.zone.today )
     click_on("Get Flights")
 
-    expect(page).to have_content("Please pick a date")
+    expect(page).not_to have_content("JFK")
+    expect(page).not_to have_content("LAX")
   end
 
   scenario "user selects same airport" do

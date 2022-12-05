@@ -45,7 +45,7 @@ RSpec.feature "Sorts flights based on selection" do
       select("Duration", from: "airport_sort")
       sleep 0.1
       expect(page).to have_text /2:00pm.*7:00pm.*8:00am/m
-      select("Time", from: "airport_sort")
+      select("Departure", from: "airport_sort")
       sleep 0.1
       expect(page).to have_text /8:00am.*2:00pm.*7:00pm/m
     end

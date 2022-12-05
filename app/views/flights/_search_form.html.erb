@@ -5,21 +5,21 @@
       <div class="sm:flex justify-between gap-x-6 mt-10">
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-plane-departure"></i>
-          <%= f.collection_select :departing_airport_id, airports, :id, :location, { selected: params.dig(:airport, :departing_airport_id), prompt: 'Departing from?' }, class: 'rounded-xl text-gray-500 w-full pl-5' %>
+          <%= f.collection_select :departing_airport_id, airports, :id, :location, { selected: params.dig(:airport, :departing_airport_id), prompt: 'Departing from?' }, required: true, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-plane-arrival"></i>
-          <%= f.collection_select :arriving_airport_id, airports, :id, :location, { selected: params.dig(:airport, :arriving_airport_id), prompt: 'Going to?'}, class: 'rounded-xl text-gray-500 w-full pl-5' %>
+          <%= f.collection_select :arriving_airport_id, airports, :id, :location, { selected: params.dig(:airport, :arriving_airport_id), prompt: 'Going to?'}, required: true, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
       </div>
       <div class="sm:flex justify-between gap-4 mt-3">
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-solid fa-user mx-1"></i>
-          <%= f.select :passenger_count, 1..4, { selected: params.dig(:airport, :passenger_count), prompt: 'Passengers' }, class: 'rounded-xl text-gray-500 w-full pl-5' %>
+          <%= f.select :passenger_count, 1..4, { selected: params.dig(:airport, :passenger_count), prompt: 'Passengers' }, required: true, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
         <div class="flex basis-1/2 items-center gap-3 mb-3">
           <i class="text-blue-500 fa-regular fa-calendar mx-1"></i>
-          <%= f.date_field :date, value: params.dig(:airport, :date), class: 'rounded-xl text-gray-500 w-full pl-5' %>
+          <%= f.date_field :date, value: params.dig(:airport, :date), required: true, class: 'rounded-xl text-gray-500 w-full pl-5' %>
         </div>
       </div>
       <div class="flex justify-center mb-3 items-center">

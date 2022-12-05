@@ -10,19 +10,7 @@
     <div class="flex flex-col items-center">
       <p class="mt-2 text-blue-500 font-light text-lg tracking-wider uppercase text-center">Passenger Information</p>
       <hr class="border-t-2 my-2 w-full">
-      <%= form_with model: @booking do |f| %>
-        <%= f.hidden_field :flight_id, value: @flight.id %>
-        <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.fields_for :passengers do |p| %>
-          <div class="mb-3">
-            <p class="font-md text-xs text-gray-600 uppercase">Flight Passenger <%= p.index + 1 %></p>
-            <%= p.text_field :name, placeholder: 'Passenger Name', class: 'text-sm rounded-xl' %>
-          </div>
-        <% end %>
-        <div class="flex justify-center">
-          <%= f.submit 'Complete Booking', class: 'btn-primary' %>
-        </div>
-      <% end %>
+        <%= render 'form', booking: @booking, flight: @flight %>
     </div>
   </div>
 </div>

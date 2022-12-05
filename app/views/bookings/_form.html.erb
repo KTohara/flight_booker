@@ -1,0 +1,13 @@
+<%= form_with model: booking do |f| %>
+  <%= f.hidden_field :flight_id, value: flight.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.fields_for :passengers do |p| %>
+    <div class="mb-3">
+      <p class="font-md text-xs text-gray-600 uppercase">Flight Passenger <%= p.index + 1 %></p>
+      <%= p.text_field :name, placeholder: 'Passenger Name', class: 'text-sm rounded-xl' %>
+    </div>
+  <% end %>
+  <div class="flex justify-center">
+    <%= f.submit 'Complete Booking', class: 'btn-primary' %>
+  </div>
+<% end %>

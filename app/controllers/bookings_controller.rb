@@ -6,10 +6,10 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.includes(:passengers).find(params[:id])
+    @booking = Booking.includes(:passengers).find_by(id: params[:id])
 
-    unless @booking.user == current_user
-      redirect_to root_path, notice: "These aren't the flights you are looking for!"
+    unless @booking && @booking.user == current_user
+      redirect_to root_path, alert: "These aren't the flights you are looking for!"
     end
   end
   
@@ -22,10 +22,13 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    @flight = Flight.find(params[:booking][:flight_id])
+
     if @booking.save
       PassengerMailer.with(booking: @booking).confirmation_email.deliver_now
-      redirect_to @booking, notice: "#{@booking.user.username.titleize} Your flight has been booked! Confirmation email has been sent."
+      redirect_to @booking, notice: "#{@booking.user.username.titleize}, your flight has been booked! Confirmation email has been sent."
     else
+      flash.now[:alert] = 'Please fill in all passengers.'
       render :new, status: :unprocessable_entity
     end
   end
