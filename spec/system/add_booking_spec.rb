@@ -5,9 +5,9 @@ RSpec.describe "add booking", type: :system do
   let!(:atl) { create(:airport, :atl) }
   let!(:lax) { create(:airport, :lax) }
 
-  let!(:morning) { create(:morning_flight, id: 1, departing_airport: jfk, arriving_airport: lax) }
-  let!(:afternoon) { create(:afternoon_flight, id: 2, departing_airport: jfk, arriving_airport: lax) }
-  let!(:evening) { create(:evening_flight, id: 3, departing_airport: atl, arriving_airport: jfk) }
+  let!(:f1) { create(:morning_flight, :high_price, id: 1, departing_airport: jfk, arriving_airport: lax) }
+  let!(:f2) { create(:afternoon_flight, :mid_price, id: 2, departing_airport: jfk, arriving_airport: lax) }
+  let!(:f3) { create(:evening_flight, id: 3, departing_airport: atl, arriving_airport: jfk) }
 
   it 'allows user to login, search/select flights, create a booking' do
     # Sign up
@@ -34,11 +34,26 @@ RSpec.describe "add booking", type: :system do
     expect(page).to have_content('LAX').twice
     expect(page).to have_content('8:00am')
     expect(page).to have_content('2:00pm')
+    expect(page).to have_content('$400')
+    expect(page).to have_content('$300')
     expect(page).not_to have_content('ATL')
     expect(page).not_to have_content('7:00pm')
 
+    # Sort flights
+    expect(page).to have_text /400.*300/m
+    sleep(0.1)
+    select('Price', from: :airport_sort)
+    sleep(0.1)
+    expect(page).to have_text /300.*400/m
+
+    expect(page).to have_text /2:00pm.*8:00am/m
+    sleep(0.1)
+    select('Departure', from: :airport_sort)
+    sleep(0.1)
+    expect(page).to have_text /8:00am.*2:00pm/m
+
     # Booking options
-    page.click_link('', href: '/bookings/new?flight_id=1&passenger_count=2')
+    find(:xpath, '/html/body/main/div[3]/div[1]', text: '8:00am').click
     fill_in(:booking_passengers_attributes_0_name, with: 'Passenger One')
     fill_in(:booking_passengers_attributes_1_name, with: 'Passenger Two')
     click_on('Complete Booking')

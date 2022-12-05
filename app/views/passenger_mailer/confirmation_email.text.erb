@@ -20,5 +20,5 @@ Total Estimated Flight Time: <%= "#{pluralize(@flight.duration_hours, 'hour')} #
 Passengers:
 
 <% @booking.passengers.each do |passenger| %>
-  <%= passenger.name.titleize %></li>
+  <%= passenger.name.titleize %>
 <% end %>
