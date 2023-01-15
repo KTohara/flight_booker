@@ -40,17 +40,16 @@ RSpec.describe "add booking", type: :system do
     expect(page).not_to have_content('7:00pm')
 
     # Sort flights
-    expect(page).to have_text /400.*300/m
+    expect(page).to have_text (/400.*300/m)
     sleep(0.1)
     select('Price', from: :airport_sort)
     sleep(0.1)
-    expect(page).to have_text /300.*400/m
-
-    expect(page).to have_text /2:00pm.*8:00am/m
+    expect(page).to have_text (/300.*400/m)
+    expect(page).to have_text (/2:00pm.*8:00am/m)
     sleep(0.1)
     select('Departure', from: :airport_sort)
     sleep(0.1)
-    expect(page).to have_text /8:00am.*2:00pm/m
+    expect(page).to have_text (/8:00am.*2:00pm/m)
 
     # Booking options
     find(:xpath, '/html/body/main/div[3]/div[1]', text: '8:00am').click
